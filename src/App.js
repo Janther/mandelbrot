@@ -9,8 +9,6 @@ function App() {
   let [multiplier, setMultiplier] = useState(2);
   let [connections, setConnections] = useState([]);
 
-  const getAngle = (x, base) => (x / base) * 2 * Math.PI;
-
   const getXY = useCallback(
     angle => ({
       x: Math.cos(angle) * scale + canvasWidth / 2,
@@ -20,10 +18,7 @@ function App() {
   );
 
   const pointFactory = useCallback(
-    (x, base) => {
-      let angle = getAngle(x, base);
-      return getXY(angle);
-    },
+    (x, base) => getXY((x / base) * 2 * Math.PI),
     [getXY]
   );
 
